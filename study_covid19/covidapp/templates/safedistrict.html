@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COVID-19 District Analysis</title>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            // Get the monthly data JSON
+            var monthlyDataJson = '{{ result.Monthly_Data | safe }}';
+
+            // Parse the JSON data
+            var monthlyData = JSON.parse(monthlyDataJson);
+
+            // Create the data table
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Date');
+            data.addColumn('number', 'Confirmed');
+            data.addColumn('number', 'Tested');
+            data.addColumn('number', 'Recovered');
+            data.addColumn('number', 'Deceased');
+
+            for (var i = 0; i < monthlyData.length; i++) {
+                var row = [
+                    monthlyData[i].Date,
+                    monthlyData[i].Confirmed,
+                    monthlyData[i].Tested,
+                    monthlyData[i].Recovered,
+                    monthlyData[i].Deceased
+                ];
+                data.addRow(row);
+            }
+
+            // Set chart options
+            var options = {
+                title: 'Monthly COVID-19 Cases',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            // Instantiate and draw the chart
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+    <h1>COVID-19 District Analysis</h1>
+    <form action="{% url 'district' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="district_name" placeholder="Enter district name" required>
+        <input type="submit" value="Analyze">
+    </form>
+    
+
+    {% if result %}
+        <h2>Results:</h2>
+        <p>Total Confirmed Cases: {{ result.Confirmed }}</p>
+        <p>Total Tested: {{ result.Tested }}</p>
+        <p>Total Recovered: {{ result.Recovered }}</p>
+        <p>Total Deceased: {{ result.Deceased }}</p>
+        <h3>Top Districts:</h3>
+        <ul>
+        {% for district, cases in result.Top_Districts.items %}
+            <li>{{ district }}: {{ cases }}</li>
+        {% endfor %}
+        </ul>
+
+        <h3>Graph:</h3>
+        <div id="chart_div" style="width: 800px; height: 600px;"></div>
+    {% endif %}
+        
+</body>
+</html>

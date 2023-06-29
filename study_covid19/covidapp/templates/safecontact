@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <link rel="stylesheet" href="https://sahiljena.github.io/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+    #my-form{
+    max-width: 500px !important;
+  }
+  #my-form input,textarea{
+    background: var(--dark) !important;
+    color: var(--lightv) !important;
+  }
+  #my-form label{
+    color: var(--lightv);
+  }
+  #my-form-status{
+    max-width: 500px !important;
+  }
+  .blur {
+  width:100%;
+  height:100%;
+  background-size:cover;
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -ms-filter: blur(4px);
+  -o-filter: blur(4px);
+  filter: blur(4px);
+  z-index: 9;
+  }
+
+</style>
+
+
+</head>
+<body>
+  <br>
+<main>
+  <h1>
+    <span class="text-primary"> Contact</span>
+  </h1>
+  <p>
+    We value your opinion and would love to hear your feedback! Please take a moment to share your thoughts about our COVID website.
+ 
+  </p>
+  <p id="my-form-status"></p>
+  <form class="" id="my-form" action="https://formspree.io/f/xgebbbrg" method="POST">
+ 
+    <div class="form-group">
+      <label class="form-label" for="input-name-1">Name</label>
+      <input class="form-input" type="text" id="input-name-1" placeholder="Name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="input-email-2">E-mail</label>
+      <input class="form-input" type="email" id="input-email-2" placeholder="E-mail" name="_replyto" required>
+    </div>
+    <!-- form textarea control -->
+    <div class="form-group">
+      <label class="form-label" for="input-example-3">Message</label>
+      <textarea class="form-input" id="input-example-3" placeholder="Type your message here." rows="3" name="message" required></textarea>
+    </div>
+    <button id="my-form-button" class="btn btn-primary" type="submit">Send</button>
+    
+  </form>
+  <br>  
+  <script>
+    window.addEventListener("DOMContentLoaded", function() {
+
+    // get the form elements defined in your form HTML above
+    
+    var form = document.getElementById("my-form");
+    var button = document.getElementById("my-form-button");
+    var status = document.getElementById("my-form-status");
+
+    // Success and Error functions for after the form is submitted
+    
+    function success() {
+      form.reset();
+      button.style = "display: none ";
+      status.innerHTML = "<div class='toast toast-success'> <button onlick='closebtn()' class='btn btn-clear float-right'></button>Thanks for contacting me, I'll get back to you soon!</div>";
+      form.classList.remove('loading');
+      form.classList.remove('loading-lg');
+      form.classList.remove('blur');
+    }
+
+    function error() {
+      status.innerHTML = "<div class='toast toast-error'> <button onlick='closebtn()' class='btn btn-clear float-right'></button>Oops something went wrong!</div>";
+      form.classList.remove('loading');
+      form.classList.remove('loading-lg');
+      form.classList.remove('blur');
+    }
+
+    // handle the form submission event
+
+    form.addEventListener("submit", function(ev) {
+      ev.preventDefault();
+      var data = new FormData(form);
+      ev.target.classList.toggle('loading');
+      ev.target.classList.toggle('loading-lg');
+      ev.target.classList.toggle('blur');
+      ajax(form.method, form.action, data, success, error);
+    });
+  });
+  
+  // helper function for sending an AJAX request
+
+  function ajax(method, url, data, success, error) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState !== XMLHttpRequest.DONE) return;
+      if (xhr.status === 200) {
+        success(xhr.response, xhr.responseType);
+      } else {
+        error(xhr.status, xhr.response, xhr.responseType);
+      }
+    };
+    xhr.send(data);
+  }
+  </script>
+</body>
+</html>
