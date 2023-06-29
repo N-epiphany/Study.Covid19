@@ -37,7 +37,6 @@ hyperlink==21.0.0
 idna==3.4
 incremental==22.10.0
 ipykernel==6.23.1
-ipython==8.14.0
 ipython-genutils==0.2.0
 isoduration==20.11.0
 itsdangerous==2.1.2
