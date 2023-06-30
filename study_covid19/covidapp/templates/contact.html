@@ -219,6 +219,13 @@
 .toggle .line3{
     transform: rotate(45deg) translate(-5px,-6px);
 }
+/* // website name  */
+a.normal-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: auto;
+}
+
     </style>
        
 
@@ -236,8 +243,8 @@
       <img src="{% static 'covidapp/images/covid19Icon.jpeg' %}" alt="Logo Image">
    </div>
       <div class="website-name pt-4"> 
-      <i href="www.studycovid19.in"> Study.Covid19 </i>
-     </div>  
+        <a href="http://www.studycovid19.in" class="normal-link">Study.Covid19</a>
+      </div>  
 
 <div class="hamburger">
 <div class="line1"></div>
