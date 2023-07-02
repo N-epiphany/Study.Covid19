@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_COOKIE_SECURE = True  # Set to False during development without HTTPS
+
 
 # Application definition
 

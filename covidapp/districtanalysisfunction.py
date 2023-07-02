@@ -27,7 +27,9 @@ def get_district_ranking(state):
 # Filter the DataFrame by the provided district name
 def districtanalysis(district):
     district_data = df[df['District'] == district].copy()
-    
+    if district_data.empty:
+        # Handle the case when district_data is empty
+        return 0;
     # Convert the 'Date' column to datetime format
     district_data['Date'] = pd.to_datetime(district_data['Date'])
     
@@ -48,9 +50,12 @@ def districtanalysis(district):
     State=district_data['State'].iloc[0]
     district_ranking = get_district_ranking(district_data['State'].iloc[0])
     
-    # Find the position of the district in the ranking
-    district_position = district_ranking.index.get_loc(district) + 1
-    
+    district_position = None
+
+    if district in district_ranking.index:
+        # Find the position of the district in the ranking
+        district_position = district_ranking.index.get_loc(district) + 1
+
     # Get the top 3 districts
     top_3_districts = district_ranking.head(3)
 

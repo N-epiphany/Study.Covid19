@@ -4,8 +4,8 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Study.CovidIndia</title>
-  <link rel="shortcut icon" type="image/x-icon" href="{% static 'covidapp/images/favicon.png' %}">
 
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'covidapp/images/favicon.png' %}">
 
 
 <!-- CDNS  -->
@@ -172,6 +172,7 @@
       .theme-toggle label {
         margin-right: 5px;
       }
+
       nav{
     height: 6rem;
     width: 100vw;
@@ -302,12 +303,157 @@
 .toggle .line3{
     transform: rotate(45deg) translate(-5px,-6px);
 }
+      #info_tab .item {
+    height: 100vh;
+    position: relative;
+  }
+  #info_tab .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #info_tab .item .cover {
+    padding: 75px 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+  }
+  #info_tab .item .cover .info_tab-content {
+    position: relative;
+    padding: 56px;
+    overflow: hidden;
+  }
+  #info_tab .item .cover .info_tab-content .line {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    border: 9px solid #fff;
+    -webkit-clip-path: polygon(0 0, 60% 0, 36% 100%, 0 100%);
+    clip-path: polygon(0 0, 60% 0, 36% 100%, 0 100%);
+  }
+  #info_tab .item .cover .info_tab-content h2 {
+    font-weight: 300;
+    font-size: 35px;
+    color: #fff;
+  }
+  #info_tab .item .cover .info_tab-content h1 {
+    font-size: 56px;
+    font-weight: 600;
+    margin: 5px 0 20px;
+    word-spacing: 3px;
+    color: #fff;
+  }
+  #info_tab .item .cover .info_tab-content h4 {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 36px;
+    color: #fff;
+  }
+  #info_tab .owl-item.active h1 {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation-name: fadeInDown;
+    animation-delay: 0.3s;
+  }
+  #info_tab .owl-item.active h2 {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation-name: fadeInDown;
+    animation-delay: 0.3s;
+  }
+  #info_tab .owl-item.active h4 {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation-name: fadeInUp;
+    animation-delay: 0.3s;
+  }
+  #info_tab .owl-item.active .line {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation-name: fadeInLeft;
+    animation-delay: 0.3s;
+  }
+  #info_tab .owl-nav .owl-prev {
+    position: absolute;
+    left: 15px;
+    top: 43%;
+    opacity: 0;
+    -webkit-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
+    background: rgba(0, 0, 0, 0.5) !important;
+    width: 40px;
+    cursor: pointer;
+    height: 40px;
+    position: absolute;
+    display: block;
+    z-index: 1000;
+    border-radius: 0;
+  }
+  #info_tab .owl-nav .owl-prev span {
+    font-size: 1.6875rem;
+    color: #fff;
+  }
+  #info_tab .owl-nav .owl-prev:focus {
+    outline: 0;
+  }
+  #info_tab .owl-nav .owl-prev:hover {
+    background: #000 !important;
+  }
+  #info_tab .owl-nav .owl-next {
+    position: absolute;
+    right: 15px;
+    top: 43%;
+    opacity: 0;
+    -webkit-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
+    background: rgba(0, 0, 0, 0.5) !important;
+    width: 40px;
+    cursor: pointer;
+    height: 40px;
+    position: absolute;
+    display: block;
+    z-index: 1000;
+    border-radius: 0;
+  }
+  #info_tab .owl-nav .owl-next span {
+    font-size: 1.6875rem;
+    color: #fff;
+  }
+  #info_tab .owl-nav .owl-next:focus {
+    outline: 0;
+  }
+  #info_tab .owl-nav .owl-next:hover {
+    background: #000 !important;
+  }
+  #info_tab:hover .owl-prev {
+    left: 0px;
+    opacity: 1;
+  }
+  #info_tab:hover .owl-next {
+    right: 0px;
+    opacity: 1;
+  }
     </style>
        
-  
 
-<!-- CODE FOR MAP  -->
-
+      
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
@@ -366,13 +512,6 @@
         #chart_div {
             margin: 0 auto; /* Center align the chart */
         }
-        /* // website name  */
-a.normal-link {
-  text-decoration: none;
-  color: inherit;
-  cursor: auto;
-}
-
     </style>
     
 </head>
@@ -381,14 +520,13 @@ a.normal-link {
 
     <!-- navigation bar  -->
  <!-- Navigation bar code -->
-
  <nav>  
     <div class="logo">
         <img src="{% static 'covidapp/images/covid19Icon.jpeg' %}" alt="Logo Image">
      </div>
         <div class="website-name pt-4"> 
-            <a href="http://www.studycovid19.in" class="normal-link">Study.Covid19</a>
-        </div>  
+         Study.Covid19
+       </div>  
 
 <div class="hamburger">
   <div class="line1"></div>
@@ -401,7 +539,7 @@ a.normal-link {
   <li><a href="{% url 'india' %}">India</a></li>
   <li><a href="{% url 'contact' %}">Contact Us</a></li>
 </ul>
-</nav>
+  </nav>
     <!-- main area  -->
 
     
@@ -427,10 +565,10 @@ a.normal-link {
     <div class="container mt-5" style="padding-top: 6rem;">
         <div class="row justify-content-center">
             <div class="col-lg-6">
-                <h1 class="text-center">Search for Your District</h1>
-                <form class="text-center" action="{% url 'district' %}" method="post">
+                <h1 class="text-center">Search for Your State</h1>
+                <form class="text-center" action="{% url 'state' %}" method="post">
                     {% csrf_token %}
-                    <input id="state_name" class="form-control text-gray-400" type="text" name="district_name" placeholder="Enter state name" required>
+                    <input id="state_name" class="form-control text-gray-400" type="text" name="state_name" placeholder="Enter state name" required>
                     
                 </form>
             </div>
@@ -444,795 +582,10 @@ a.normal-link {
     <script>
     $(document).ready(function() {
         var stateNames = [
-             // Andhra Pradesh
-    "Anantapur",
-    "Chittoor",
-    "East Godavari",
-    "Guntur",
-    "Kadapa",
-    "Krishna",
-    "Kurnool",
-    "Nellore",
-    "Prakasam",
-    "Srikakulam",
-    "Visakhapatnam",
-    "Vizianagaram",
-    "West Godavari",
-
-    // Arunachal Pradesh
-    "Anjaw",
-    "Changlang",
-    "East Kameng",
-    "East Siang",
-    "Kamle",
-    "Kra Daadi",
-    "Kurung Kumey",
-    "Lepa Rada",
-    "Lohit",
-    "Longding",
-    "Lower Dibang Valley",
-    "Lower Siang",
-    "Lower Subansiri",
-    "Namsai",
-    "Pakke Kessang",
-    "Papum Pare",
-    "Shi Yomi",
-    "Siang",
-    "Tawang",
-    "Tirap",
-    "Upper Dibang Valley",
-    "Upper Siang",
-    "Upper Subansiri",
-    "West Kameng",
-    "West Siang",
-
-    // Assam
-    "Baksa",
-    "Barpeta",
-    "Biswanath",
-    "Bongaigaon",
-    "Cachar",
-    "Charaideo",
-    "Chirang",
-    "Darrang",
-    "Dhemaji",
-    "Dhubri",
-    "Dibrugarh",
-    "Dima Hasao",
-    "Goalpara",
-    "Golaghat",
-    "Hailakandi",
-    "Hojai",
-    "Jorhat",
-    "Kamrup",
-    "Kamrup Metropolitan",
-    "Karbi Anglong",
-    "Karimganj",
-    "Kokrajhar",
-    "Lakhimpur",
-    "Majuli",
-    "Morigaon",
-    "Nagaon",
-    "Nalbari",
-    "Sivasagar",
-    "Sonitpur",
-    "South Salmara-Mankachar",
-    "Tinsukia",
-    "Udalguri",
-    "West Karbi Anglong",
-
-    // Bihar
-    "Araria",
-    "Arwal",
-    "Aurangabad",
-    "Banka",
-    "Begusarai",
-    "Bhagalpur",
-    "Bhojpur",
-    "Buxar",
-    "Darbhanga",
-    "East Champaran",
-    "Gaya",
-    "Gopalganj",
-    "Jamui",
-    "Jehanabad",
-    "Kaimur",
-    "Katihar",
-    "Khagaria",
-    "Kishanganj",
-    "Lakhisarai",
-    "Madhepura",
-    "Madhubani",
-    "Munger",
-    "Muzaffarpur",
-    "Nalanda",
-    "Nawada",
-    "Patna",
-    "Purnia",
-    "Rohtas",
-    "Saharsa",
-    "Samastipur",
-    "Saran",
-    "Sheikhpura",
-    "Sheohar",
-    "Sitamarhi",
-    "Siwan",
-    "Supaul",
-    "Vaishali",
-    "West Champaran",
-
-    // Chhattisgarh
-    "Balod",
-    "Baloda Bazar",
-    "Balrampur",
-    "Bastar",
-    "Bemetara",
-    "Bijapur",
-    "Bilaspur",
-    "Dantewada",
-    "Dhamtari",
-    "Durg",
-    "Gariaband",
-    "Gaurela-Pendra-Marwahi",
-    "Janjgir-Champa",
-    "Jashpur",
-    "Kanker",
-    "Kawardha",
-    "Kondagaon",
-    "Korba",
-    "Korea",
-    "Mahasamund",
-    "Mungeli",
-    "Narayanpur",
-    "Raigarh",
-    "Raipur",
-    "Rajnandgaon",
-    "Sukma",
-    "Surajpur",
-    "Surguja",
-
-    // Goa
-    "North Goa",
-    "South Goa",
-
-    // Gujarat
-    "Ahmedabad",
-    "Amreli",
-    "Anand",
-    "Aravalli",
-    "Banaskantha",
-    "Bharuch",
-    "Bhavnagar",
-    "Botad",
-    "Chhota Udaipur",
-    "Dahod",
-    "Dang",
-    "Devbhoomi Dwarka",
-    "Gandhinagar",
-    "Gir Somnath",
-    "Jamnagar",
-    "Junagadh",
-    "Kheda",
-    "Kutch",
-    "Mahisagar",
-    "Mehsana",
-    "Morbi",
-    "Narmada",
-    "Navsari",
-    "Panchmahal",
-    "Patan",
-    "Porbandar",
-    "Rajkot",
-    "Sabarkantha",
-    "Surat",
-    "Surendranagar",
-    "Tapi",
-    "Vadodara",
-    "Valsad",
-
-    // Haryana
-    "Ambala",
-    "Bhiwani",
-    "Charkhi Dadri",
-    "Faridabad",
-    "Fatehabad",
-    "Gurugram",
-    "Hisar",
-    "Jhajjar",
-    "Jind",
-    "Kaithal",
-    "Karnal",
-    "Kurukshetra",
-    "Mahendragarh",
-    "Nuh",
-    "Palwal",
-    "Panchkula",
-    "Panipat",
-    "Rewari",
-    "Rohtak",
-    "Sirsa",
-    "Sonipat",
-    "Yamunanagar",
-
-    // Himachal Pradesh
-    "Bilaspur",
-    "Chamba",
-    "Hamirpur",
-    "Kangra",
-    "Kinnaur",
-    "Kullu",
-    "Lahaul and Spiti",
-    "Mandi",
-    "Shimla",
-    "Sirmaur",
-    "Solan",
-    "Una",
-
-    // Jharkhand
-    "Bokaro",
-    "Chatra",
-    "Deoghar",
-    "Dhanbad",
-    "Dumka",
-    "East Singhbhum",
-    "Garhwa",
-    "Giridih",
-    "Godda",
-    "Gumla",
-    "Hazaribagh",
-    "Jamtara",
-    "Khunti",
-    "Koderma",
-    "Latehar",
-    "Lohardaga",
-    "Pakur",
-    "Palamu",
-    "Ramgarh",
-    "Ranchi",
-    "Sahibganj",
-    "Seraikela Kharsawan",
-    "Simdega",
-    "West Singhbhum",
-
-    // Karnataka
-    "Bagalkot",
-    "Ballari",
-    "Belagavi",
-    "Bengaluru Rural",
-    "Bengaluru Urban",
-    "Bidar",
-    "Chamarajanagar",
-    "Chikkaballapur",
-    "Chikkamagaluru",
-    "Chitradurga",
-    "Dakshina Kannada",
-    "Davanagere",
-    "Dharwad",
-    "Gadag",
-    "Hassan",
-    "Haveri",
-    "Kalaburagi",
-    "Kodagu",
-    "Kolar",
-    "Koppal",
-    "Mandya",
-    "Mysuru",
-    "Raichur",
-    "Ramanagara",
-    "Shivamogga",
-    "Tumakuru",
-    "Udupi",
-    "Uttara Kannada",
-    "Vijayapura",
-    "Yadgir",
-
-    // Kerala
-    "Alappuzha",
-    "Ernakulam",
-    "Idukki",
-    "Kannur",
-    "Kasaragod",
-    "Kollam",
-    "Kottayam",
-    "Kozhikode",
-    "Malappuram",
-    "Palakkad",
-    "Pathanamthitta",
-    "Thiruvananthapuram",
-    "Thrissur",
-    "Wayanad",
-
-    // Madhya Pradesh
-    "Agar Malwa",
-    "Alirajpur",
-    "Anuppur",
-    "Ashoknagar",
-    "Balaghat",
-    "Barwani",
-    "Betul",
-    "Bhind",
-    "Bhopal",
-    "Burhanpur",
-    "Chhatarpur",
-    "Chhindwara",
-    "Damoh",
-    "Datia",
-    "Dewas",
-    "Dhar",
-    "Dindori",
-    "Guna",
-    "Gwalior",
-    "Harda",
-    "Hoshangabad",
-    "Indore",
-    "Jabalpur",
-    "Jhabua",
-    "Katni",
-    "Khandwa",
-    "Khargone",
-    "Mandla",
-    "Mandsaur",
-    "Morena",
-    "Narsinghpur",
-    "Neemuch",
-    "Niwari",
-    "Panna",
-    "Raisen",
-    "Rajgarh",
-    "Ratlam",
-    "Rewa",
-    "Sagar",
-    "Satna",
-    "Sehore",
-    "Seoni",
-    "Shahdol",
-    "Shajapur",
-    "Sheopur",
-    "Shivpuri",
-    "Sidhi",
-    "Singrauli",
-    "Tikamgarh",
-    "Ujjain",
-    "Umaria",
-    "Vidisha",
-
-    // Maharashtra
-    "Ahmednagar",
-    "Akola",
-    "Amravati",
-    "Aurangabad",
-    "Beed",
-    "Bhandara",
-    "Buldhana",
-    "Chandrapur",
-    "Dhule",
-    "Gadchiroli",
-    "Gondia",
-    "Hingoli",
-    "Jalgaon",
-    "Jalna",
-    "Kolhapur",
-    "Latur",
-    "Mumbai City",
-    "Mumbai Suburban",
-    "Nagpur",
-    "Nanded",
-    "Nandurbar",
-    "Nashik",
-    "Osmanabad",
-    "Palghar",
-    "Parbhani",
-    "Pune",
-    "Raigad",
-    "Ratnagiri",
-    "Sangli",
-    "Satara",
-    "Sindhudurg",
-    "Solapur",
-    "Thane",
-    "Wardha",
-    "Washim",
-    "Yavatmal",
-
-    // Manipur
-    "Bishnupur",
-    "Chandel",
-    "Churachandpur",
-    "Imphal East",
-    "Imphal West",
-    "Jiribam",
-    "Kakching",
-    "Kamjong",
-    "Kangpokpi",
-    "Noney",
-    "Pherzawl",
-    "Senapati",
-    "Tamenglong",
-    "Tengnoupal",
-    "Thoubal",
-    "Ukhrul",
-
-    // Meghalaya
-    "East Garo Hills",
-    "East Jaintia Hills",
-    "East Khasi Hills",
-    "North Garo Hills",
-    "Ri Bhoi",
-    "South Garo Hills",
-    "South West Garo Hills",
-    "South West Khasi Hills",
-    "West Garo Hills",
-    "West Jaintia Hills",
-    "West Khasi Hills",
-
-    // Mizoram
-    "Aizawl",
-    "Champhai",
-    "Kolasib",
-    "Lawngtlai",
-    "Lunglei",
-    "Mamit",
-    "Saiha",
-    "Serchhip",
-
-    // Nagaland
-    "Dimapur",
-    "Kiphire",
-    "Kohima",
-    "Longleng",
-    "Mokokchung",
-    "Mon",
-    "Peren",
-    "Phek",
-    "Tuensang",
-    "Wokha",
-    "Zunheboto",
-
-    // Odisha
-    "Angul",
-    "Balangir",
-    "Balasore",
-    "Bargarh",
-    "Bhadrak",
-    "Boudh",
-    "Cuttack",
-    "Deogarh",
-    "Dhenkanal",
-    "Gajapati",
-    "Ganjam",
-    "Jagatsinghpur",
-    "Jajpur",
-    "Jharsuguda",
-    "Kalahandi",
-    "Kandhamal",
-    "Kendrapara",
-    "Kendujhar",
-    "Khordha",
-    "Koraput",
-    "Malkangiri",
-    "Mayurbhanj",
-    "Nabarangpur",
-    "Nayagarh",
-    "Nuapada",
-    "Puri",
-    "Rayagada",
-    "Sambalpur",
-    "Sonepur",
-    "Sundargarh",
-
-    // Punjab
-    "Amritsar",
-    "Barnala",
-    "Bathinda",
-    "Faridkot",
-    "Fatehgarh Sahib",
-    "Fazilka",
-    "Ferozepur",
-    "Gurdaspur",
-    "Hoshiarpur",
-    "Jalandhar",
-    "Kapurthala",
-    "Ludhiana",
-    "Mansa",
-    "Moga",
-    "Pathankot",
-    "Patiala",
-    "Rupnagar",
-    "Sahibzada Ajit Singh Nagar",
-    "Sangrur",
-    "Shahid Bhagat Singh Nagar",
-    "Sri Muktsar Sahib",
-    "Tarn Taran",
-
-    // Rajasthan
-    "Ajmer",
-    "Alwar",
-    "Banswara",
-    "Baran",
-    "Barmer",
-    "Bharatpur",
-    "Bhilwara",
-    "Bikaner",
-    "Bundi",
-    "Chittorgarh",
-    "Churu",
-    "Dausa",
-    "Dholpur",
-    "Dungarpur",
-    "Hanumangarh",
-    "Jaipur",
-    "Jaisalmer",
-    "Jalore",
-    "Jhalawar",
-    "Jhunjhunu",
-    "Jodhpur",
-    "Karauli",
-    "Kota",
-    "Nagaur",
-    "Pali",
-    "Pratapgarh",
-    "Rajsamand",
-    "Sawai Madhopur",
-    "Sikar",
-    "Sirohi",
-    "Sri Ganganagar",
-    "Tonk",
-    "Udaipur",
-
-    // Sikkim
-    "East Sikkim",
-    "North Sikkim",
-    "South Sikkim",
-    "West Sikkim",
-
-    // Tamil Nadu
-    "Ariyalur",
-    "Chengalpattu",
-    "Chennai",
-    "Coimbatore",
-    "Cuddalore",
-    "Dharmapuri",
-    "Dindigul",
-    "Erode",
-    "Kallakurichi",
-    "Kanchipuram",
-    "Kanyakumari",
-    "Karur",
-    "Krishnagiri",
-    "Madurai",
-    "Nagapattinam",
-    "Namakkal",
-    "Nilgiris",
-    "Perambalur",
-    "Pudukkottai",
-    "Ramanathapuram",
-    "Ranipet",
-    "Salem",
-    "Sivaganga",
-    "Tenkasi",
-    "Thanjavur",
-    "Theni",
-    "Thoothukudi",
-    "Tiruchirappalli",
-    "Tirunelveli",
-    "Tirupathur",
-    "Tiruppur",
-    "Tiruvallur",
-    "Tiruvannamalai",
-    "Tiruvarur",
-    "Vellore",
-    "Viluppuram",
-    "Virudhunagar",
-
-    // Telangana
-    "Adilabad",
-    "Bhadradri Kothagudem",
-    "Hyderabad",
-    "Jagtial",
-    "Jangaon",
-    "Jayashankar Bhupalpally",
-    "Jogulamba Gadwal",
-    "Kamareddy",
-    "Karimnagar",
-    "Khammam",
-    "Komaram Bheem",
-    "Mahabubabad",
-    "Mahabubnagar",
-    "Mancherial",
-    "Medak",
-    "Medchal-Malkajgiri",
-    "Mulugu",
-    "Nagarkurnool",
-    "Nalgonda",
-    "Nirmal",
-    "Nizamabad",
-    "Peddapalli",
-    "Rajanna Sircilla",
-    "Rangareddy",
-    "Sangareddy",
-    "Siddipet",
-    "Suryapet",
-    "Vikarabad",
-    "Wanaparthy",
-    "Warangal Rural",
-    "Warangal Urban",
-    "Yadadri Bhuvanagiri",
-
-    // Tripura
-    "Dhalai",
-    "Gomati",
-    "Khowai",
-    "North Tripura",
-    "Sepahijala",
-    "South Tripura",
-    "Unakoti",
-    "West Tripura",
-
-    // Uttarakhand
-    "Almora",
-    "Bageshwar",
-    "Chamoli",
-    "Champawat",
-    "Dehradun",
-    "Haridwar",
-    "Nainital",
-    "Pauri Garhwal",
-    "Pithoragarh",
-    "Rudraprayag",
-    "Tehri Garhwal",
-    "Udham Singh Nagar",
-    "Uttarkashi",
-
-    // Uttar Pradesh
-    "Agra",
-    "Aligarh",
-    "Ambedkar Nagar",
-    "Amethi",
-    "Amroha",
-    "Auraiya",
-    "Ayodhya",
-    "Azamgarh",
-    "Baghpat",
-    "Bahraich",
-    "Ballia",
-    "Balrampur",
-    "Banda",
-    "Barabanki",
-    "Bareilly",
-    "Basti",
-    "Bhadohi",
-    "Bijnor",
-    "Budaun",
-    "Bulandshahr",
-    "Chandauli",
-    "Chitrakoot",
-    "Deoria",
-    "Etah",
-    "Etawah",
-    "Faizabad",
-    "Farrukhabad",
-    "Fatehpur",
-    "Firozabad",
-    "Gautam Buddha Nagar",
-    "Ghaziabad",
-    "Ghazipur",
-    "Gonda",
-    "Gorakhpur",
-    "Hamirpur",
-    "Hapur",
-    "Hardoi",
-    "Hathras",
-    "Jalaun",
-    "Jaunpur",
-    "Jhansi",
-    "Kannauj",
-    "Kanpur Dehat",
-    "Kanpur Nagar",
-    "Kasganj",
-    "Kaushambi",
-    "Kushinagar",
-    "Lakhimpur Kheri",
-    "Lalitpur",
-    "Lucknow",
-    "Maharajganj",
-    "Mahoba",
-    "Mainpuri",
-    "Mathura",
-    "Mau",
-    "Meerut",
-    "Mirzapur",
-    "Moradabad",
-    "Muzaffarnagar",
-    "Pilibhit",
-    "Pratapgarh",
-    "Prayagraj",
-    "Rae Bareli",
-    "Rampur",
-    "Saharanpur",
-    "Sambhal",
-    "Sant Kabir Nagar",
-    "Shahjahanpur",
-    "Shamli",
-    "Shravasti",
-    "Siddharthnagar",
-    "Sitapur",
-    "Sonbhadra",
-    "Sultanpur",
-    "Unnao",
-    "Varanasi",
-
-    // West Bengal
-    "Alipurduar",
-    "Bankura",
-    "Birbhum",
-    "Cooch Behar",
-    "Dakshin Dinajpur",
-    "Darjeeling",
-    "Hooghly",
-    "Howrah",
-    "Jalpaiguri",
-    "Jhargram",
-    "Kalimpong",
-    "Kolkata",
-    "Malda",
-    "Murshidabad",
-    "Nadia",
-    "North 24 Parganas",
-    "Paschim Bardhaman",
-    "Paschim Medinipur",
-    "Purba Bardhaman",
-    "Purba Medinipur",
-    "Purulia",
-    "South 24 Parganas",
-    "Uttar Dinajpur",
-
-    // Andaman and Nicobar Islands
-    "Nicobar",
-    "North and Middle Andaman",
-    "South Andaman",
-
-    // Chandigarh
-    "Chandigarh",
-
-    // Dadra and Nagar Haveli and Daman and Diu
-    "Dadra and Nagar Haveli",
-    "Daman",
-    "Diu",
-
-    // Delhi
-    "Central Delhi",
-    "East Delhi",
-    "New Delhi",
-    "North Delhi",
-    "North East Delhi",
-    "North West Delhi",
-    "Shahdara",
-    "South Delhi",
-    "South East Delhi",
-    "South West Delhi",
-    "West Delhi",
-
-    // Ladakh
-    "Kargil",
-    "Leh",
-
-    // Lakshadweep
-    "Agatti",
-    "Amini",
-    "Androth",
-    "Bithra",
-    "Chethlath",
-    "Kadmath",
-    "Kalpeni",
-    "Kavaratti",
-    "Kiltan",
-    "Minicoy",
-
-    // Puducherry
-    "Karaikal",
-    "Mahe",
-    "Puducherry",
-    "Yanam"  ];
+            "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh",
+            "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha",
+            "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
+        ];
     
         $("#state_name").autocomplete({
             source: stateNames
@@ -1247,7 +600,7 @@ a.normal-link {
 <br>
     <div class="card mx-auto margin-top:20" style="width: 18rem;">
         <div class="card-header">
-            <h3 class=" text-center">{{ result.District }}</h3>
+            <h3 class=" text-center">{{ result.State }}</h3>
         </div>
       </div>
 
@@ -1274,8 +627,7 @@ a.normal-link {
             {% endfor %}
         </ul>
     
-        Ranking of {{ result.District }} in {{ result.State}} is {{ result.District_Position}}
-       <br>
+       
         <div class="pt-3" id="chart_div" style="width: 800px; height: 600px;"></div>
     </div>
     
@@ -1308,27 +660,27 @@ a.normal-link {
     </div>
   </footer>
   <!-- End Footer Section -->
-       
+         
 <!-- JAVA SCRIPT AND JQUERY        -->
 
       <!-- for nav bar -->
       <script>
         //<!-- JavaScript code for the navigation bar -->
      // Add your existing JavaScript code here
-      const hamburger = document.querySelector(".hamburger");
-      const navLinks = document.querySelector(".nav-links");
-      const links = document.querySelectorAll(".nav-links li");
-  
-      hamburger.addEventListener('click', () => {
-        // Animate Links
-        navLinks.classList.toggle("open");
-        links.forEach(link => {
-          link.classList.toggle("fade");
-        });
-  
-        // Hamburger Animation
-        hamburger.classList.toggle("toggle");
+     const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    const links = document.querySelectorAll(".nav-links li");
+
+    hamburger.addEventListener('click', () => {
+      // Animate Links
+      navLinks.classList.toggle("open");
+      links.forEach(link => {
+        link.classList.toggle("fade");
       });
+
+      // Hamburger Animation
+      hamburger.classList.toggle("toggle");
+    });
       </script>
 </body>
 </html> 
